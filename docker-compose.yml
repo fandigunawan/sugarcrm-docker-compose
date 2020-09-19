@@ -1,0 +1,29 @@
+version: "2"
+services:
+  sugarcrm:
+    image: spantree/sugarcrm
+    ports:
+      - "80:2080"
+    depends_on:
+      - db
+    environment:
+      DB_TYPE: mysql
+      DB_MANAGER: MysqlManager
+      DB_HOST_NAME: db
+      DB_USER_NAME: sugarcrm
+      DB_PASSWORD: wTxbULZMrosNR86J
+      DATABASE_NAME: sugarcrm
+    networks:
+      - sugarcrmnet
+  db:
+    image: mysql:5.6
+    environment:
+      MYSQL_ROOT_PASSWORD: YZiT4p7BXUqpdgpc
+      MYSQL_DATABASE: sugarcrm
+      MYSQL_USER: sugarcrm
+      MYSQL_PASSWORD: wTxbULZMrosNR86J
+    networks:
+      - sugarcrmnet
+networks:
+  sugarcrmnet:
+    driver: bridge
